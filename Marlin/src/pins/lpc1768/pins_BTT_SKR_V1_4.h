@@ -123,7 +123,7 @@
   #endif
 #else
   #ifndef Z_STOP_PIN
-    #define Z_STOP_PIN                     P1_27  // Z-STOP
+    #define Z_STOP_PIN                     P1_25  // changing to E1DET as Z-STOP seems to be broken on our board
   #endif
 #endif
 
