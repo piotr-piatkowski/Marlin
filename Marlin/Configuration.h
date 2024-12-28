@@ -118,7 +118,7 @@
 //#define BLUETOOTH
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "TST v1.11 15:45 08.10"
+#define CUSTOM_MACHINE_NAME "CNC v1.13 22:22 28-12-24"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -155,7 +155,7 @@
 //#define U_DRIVER_TYPE  A4988
 //#define V_DRIVER_TYPE  A4988
 //#define W_DRIVER_TYPE  A4988
-#define E0_DRIVER_TYPE TMC2209
+//#define E0_DRIVER_TYPE TMC2209
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -210,7 +210,7 @@
 
 // This defines the number of extruders
 // :[0, 1, 2, 3, 4, 5, 6, 7, 8]
-#define EXTRUDERS 1
+#define EXTRUDERS 0
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 // The Anet A8 original extruder is designed for 1.75mm
@@ -546,7 +546,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 5
+#define TEMP_SENSOR_0 0
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -664,7 +664,7 @@
  * PIDTEMP : PID temperature control (~4.1K)
  * MPCTEMP : Predictive Model temperature control. (~1.8K without auto-tune)
  */
-#define PIDTEMP           // See the PID Tuning Guide at https://reprap.org/wiki/PID_Tuning
+// #define PIDTEMP           // See the PID Tuning Guide at https://reprap.org/wiki/PID_Tuning
 //#define MPCTEMP         // ** EXPERIMENTAL ** See https://marlinfw.org/docs/features/model_predictive_control.html
 
 #define PID_MAX  255      // Limit hotend current while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
@@ -873,10 +873,10 @@
  * details can be tuned in Configuration_adv.h
  */
 
-#define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
+// #define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
 #define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
-#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
-#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
+// #define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
+// #define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
 
 //===========================================================================
 //============================= Mechanical Settings =========================
@@ -1226,18 +1226,18 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 100 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 400, 400, 8, 50 }
+#define DEFAULT_MAX_FEEDRATE          { 400, 400, 8 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
-  #define MAX_FEEDRATE_EDIT_VALUES    { 600, 600, 10, 50 } // ...or, set your own edit limits
+  #define MAX_FEEDRATE_EDIT_VALUES    { 600, 600, 10 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -1246,11 +1246,11 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 100 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
-  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200, 20000 } // ...or, set your own edit limits
+  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -1289,7 +1289,7 @@
 
   //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
   #if ENABLED(LIMITED_JERK_EDITING)
-    #define MAX_JERK_EDIT_VALUES { 20, 20, 0.6, 10 } // ...or, set your own edit limits
+    #define MAX_JERK_EDIT_VALUES { 20, 20, 0.6 } // ...or, set your own edit limits
   #endif
 #endif
 
@@ -3554,7 +3554,7 @@
  * Set this manually if there are extra servos needing manual control.
  * Set to 0 to turn off servo support.
  */
-//#define NUM_SERVOS 3 // Note: Servo index starts with 0 for M280-M282 commands
+#define NUM_SERVOS 1 // Note: Servo index starts with 0 for M280-M282 commands
 
 // (ms) Delay before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
@@ -3565,7 +3565,7 @@
 //#define DEACTIVATE_SERVOS_AFTER_MOVE
 
 // Edit servo angles with M281 and save to EEPROM with M500
-//#define EDITABLE_SERVO_ANGLES
+#define EDITABLE_SERVO_ANGLES
 
 // Disable servo with M282 to reduce power consumption, noise, and heat when not in use
-//#define SERVO_DETACH_GCODE
+#define SERVO_DETACH_GCODE

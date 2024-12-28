@@ -660,10 +660,14 @@ volatile bool Temperature::raw_temps_ready = false;
     #else
       #define C_TERN(T,A,B) (B)
     #endif
-    #if ENABLED(PIDTEMPBED)
-      #define B_TERN(T,A,B) ((T) ? (A) : (B))
+    #if ENABLED(PIDTEMP)
+      #if ENABLED(PIDTEMPBED)
+        #define B_TERN(T,A,B) ((T) ? (A) : (B))
+      #else
+        #define B_TERN(T,A,B) (B)
+      #endif
     #else
-      #define B_TERN(T,A,B) (B)
+        #define B_TERN(T,A,B) (A)
     #endif
     #define GHV(C,B,H) C_TERN(ischamber, C, B_TERN(isbed, B, H))
     #define SHV(V) C_TERN(ischamber, temp_chamber.soft_pwm_amount = V, B_TERN(isbed, temp_bed.soft_pwm_amount = V, temp_hotend[heater_id].soft_pwm_amount = V))
@@ -678,10 +682,14 @@ volatile bool Temperature::raw_temps_ready = false;
       #else
         #define C_GTV(T,A,B) (B)
       #endif
-      #if ALL(THERMAL_PROTECTION_BED, PIDTEMPBED)
-        #define B_GTV(T,A,B) ((T) ? (A) : (B))
+      #if ENABLED(PIDTEMP)
+        #if ALL(THERMAL_PROTECTION_BED, PIDTEMPBED)
+          #define B_GTV(T,A,B) ((T) ? (A) : (B))
+        #else
+          #define B_GTV(T,A,B) (B)
+        #endif
       #else
-        #define B_GTV(T,A,B) (B)
+          #define B_GTV(T,A,B) (A)
       #endif
       #define GTV(C,B,H) C_GTV(ischamber, C, B_GTV(isbed, B, H))
       const uint16_t watch_temp_period = GTV(WATCH_CHAMBER_TEMP_PERIOD, WATCH_BED_TEMP_PERIOD, WATCH_TEMP_PERIOD);

@@ -292,7 +292,6 @@
                 #undef PREVENT_COLD_EXTRUSION
                 #undef THERMAL_PROTECTION_HOTENDS
                 #undef THERMAL_PROTECTION_PERIOD
-                #undef WATCH_TEMP_PERIOD
               #endif
             #endif
           #endif

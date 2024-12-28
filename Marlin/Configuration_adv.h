@@ -1193,7 +1193,7 @@
 
 // @section motion
 
-#define AXIS_RELATIVE_MODES { false, false, false, false }
+#define AXIS_RELATIVE_MODES { false, false, false }
 
 // Add a Duplicate option for well-separated conjoined nozzles
 //#define MULTI_NOZZLE_DUPLICATION
@@ -1449,7 +1449,7 @@
 // @section lcd
 
 #if HAS_MANUAL_MOVE_MENU
-  #define MANUAL_FEEDRATE { 50*60, 50*60, 4*60, 2*60 } // (mm/min) Feedrates for manual moves along X, Y, Z, E from panel
+  #define MANUAL_FEEDRATE { 50*60, 50*60, 4*60 } // (mm/min) Feedrates for manual moves along X, Y, Z, E from panel
   #define FINE_MANUAL_MOVE 0.025    // (mm) Smallest manual move (< 0.1mm) applying to Z on most machines
   #if IS_ULTIPANEL
     #define MANUAL_E_MOVES_RELATIVE // Display extruder move distance rather than "position"
@@ -2788,7 +2788,7 @@
  *
  * Enable PARK_HEAD_ON_PAUSE to add the G-code M125 Pause and Park.
  */
-#define ADVANCED_PAUSE_FEATURE
+//#define ADVANCED_PAUSE_FEATURE
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #define PAUSE_PARK_RETRACT_FEEDRATE         60  // (mm/s) Initial retract feedrate.
   #define PAUSE_PARK_RETRACT_LENGTH            2  // (mm) Initial retract.
@@ -3471,12 +3471,15 @@
  *
  * See https://marlinfw.org/docs/configuration/2.0.9/laser_spindle.html for more config details.
  */
-//#define SPINDLE_FEATURE
+#define SPINDLE_FEATURE
+// #define SPINDLE_LASER_USE_PWM
+#define SPINDLE_LASER_ENA_PIN P2_07
+
 //#define LASER_FEATURE
 #if ANY(SPINDLE_FEATURE, LASER_FEATURE)
-  #define SPINDLE_LASER_ACTIVE_STATE    LOW    // Set to "HIGH" if SPINDLE_LASER_ENA_PIN is active HIGH
+  #define SPINDLE_LASER_ACTIVE_STATE    HIGH    // Set to "HIGH" if SPINDLE_LASER_ENA_PIN is active HIGH
 
-  #define SPINDLE_LASER_USE_PWM                // Enable if your controller supports setting the speed/power
+  // #define SPINDLE_LASER_USE_PWM                // Enable if your controller supports setting the speed/power
   #if ENABLED(SPINDLE_LASER_USE_PWM)
     #define SPINDLE_LASER_PWM_INVERT    false  // Set to "true" if the speed/power goes up when you want it to go slower
     #define SPINDLE_LASER_FREQUENCY     2500   // (Hz) Spindle/laser frequency (only on supported HALs: AVR, ESP32, and LPC)
